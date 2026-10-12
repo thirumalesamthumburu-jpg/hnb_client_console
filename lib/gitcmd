@@ -28,3 +28,28 @@ git remote add origin https://github.com/thirumalesamthumburu-jpg/hnb-cherished-
 git push -u origin main
 
 git push -f origin gh-pages
+
+
+
+============================
+
+
+:: 1. Clean previous build artifacts
+C:\Thiru\flutter_windows_3.47.7-stable\flutter\bin\flutter.bat clean
+
+:: 2. Build the web app again
+C:\Thiru\flutter_windows_3.47.7-stable\flutter\bin\flutter.bat build web --release --base-href "/hnb_client_console/"
+
+:: 3. Save source code changes to the main branch
+git add .
+git commit -m "Update source code"
+git push origin main
+
+:: 4. Force push the new web build to gh-pages branch
+cd build\web
+git init
+git add .
+git commit -m "Deploy latest web build"
+git branch -M gh-pages
+git remote add origin https://github.com/thirumalesamthumburu-jpg/hnb_client_console.git
+git push -f origin gh-pages
